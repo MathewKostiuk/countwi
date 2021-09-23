@@ -3,6 +3,7 @@ package countwi
 import (
 	"fmt"
 	"net/http"
+	"strings"
 
 	"golang.org/x/net/html"
 )
@@ -33,8 +34,9 @@ func countWordsAndImages(n *html.Node) (words, images int) {
 	}
 
 	if n.Type == html.TextNode {
-		fmt.Println(n)
-		words++
+		fmt.Println(n.Data)
+		sp := strings.Split(n.Data, " ")
+		words = words + len(sp)
 	}
 
 	w, i := countWordsAndImages(n.FirstChild)
