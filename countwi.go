@@ -25,7 +25,9 @@ func CountWordsAndImages(url string) (words, images int, err error) {
 }
 
 func countWordsAndImages(n *html.Node) (words, images int) {
-	if n == nil {
+	if n == nil ||
+		n.Data == "script" ||
+		n.Data == "style" {
 		return
 	}
 
